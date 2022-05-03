@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3309/gc_coffee_management
+    username: root
+    password: root1234!
