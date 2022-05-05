@@ -38,7 +38,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    void product_목록_조회_요청이_들어올_때_product_목록을_조회하고_product_DTO_리스트를_리턴한다() {
+    void product_목록_조회_요청이_들어올_때_product_목록을_조회하고_product_DTO_리스트를_반환한다() {
         //given
         final Product firstProduct = firstProductEntity();
         final Product secondProduct = secondProductEntity();

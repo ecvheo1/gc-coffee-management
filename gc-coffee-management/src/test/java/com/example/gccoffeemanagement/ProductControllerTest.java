@@ -86,7 +86,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    void product_등록_뷰_요청이_들어올_때_product_등록_뷰_이름을_리턴한다() throws Exception {
+    void product_등록_뷰_요청이_들어올_때_product_등록_뷰_이름을_반환한다() throws Exception {
         //given
         String url = "/api/v1/product/new";
         String viewName = "new-product";
