@@ -4,6 +4,7 @@ import com.example.gccoffeemanagement.domain.Category;
 import com.example.gccoffeemanagement.domain.Product;
 import com.example.gccoffeemanagement.dto.ProductCreateRequest;
 import com.example.gccoffeemanagement.dto.ProductResponse;
+import com.example.gccoffeemanagement.entity.ProductEntity;
 import com.example.gccoffeemanagement.exception.DuplicateProductException;
 import com.example.gccoffeemanagement.repository.ProductRepository;
 import com.example.gccoffeemanagement.service.ProductService;
@@ -40,8 +41,8 @@ public class ProductServiceTest {
     @Test
     void product_목록_조회_요청이_들어올_때_product_목록을_조회하고_product_DTO_리스트를_반환한다() {
         //given
-        final Product firstProduct = firstProductEntity();
-        final Product secondProduct = secondProductEntity();
+        final Product firstProduct = firstProduct();
+        final Product secondProduct = secondProduct();
         List<Product> products = List.of(firstProduct, secondProduct);
         List<ProductResponse> productResponses = ProductResponse.listOf(products);
         doReturn(products).when(productRepository).findAll();
@@ -66,7 +67,7 @@ public class ProductServiceTest {
     @Test
     void product_저장_요청이_들어올_때_중복된_product가_이미_존재하면_DuplicateProductException이_발생한다() {
         //given
-        final Product product = product();
+        final Product product = newProduct();
         doReturn(Optional.of(Product.class)).when(productRepository).findByNameCategoryPrice(any(String.class), any(Category.class), any(Integer.class));
 
         //when, then
@@ -76,7 +77,7 @@ public class ProductServiceTest {
     @Test
     void product_저장_요청이_들어올_때_정상적인_요청_데이터라면_productRepository의_save_메소드를_호출한다() {
         //given
-        final Product product = product();
+        final Product product = newProduct();
         doReturn(Optional.empty()).when(productRepository).findByNameCategoryPrice(any(String.class), any(Category.class), any(Integer.class));
 
         //when
@@ -86,8 +87,8 @@ public class ProductServiceTest {
         verify(productRepository, times(1)).save(any(Product.class));
     }
 
-    private Product firstProductEntity() {
-        return Product.entityOf(
+    private Product firstProduct() {
+        return ProductEntity.of(
                 1L,
                 "first",
                 Category.BLONDE_ROAST,
@@ -95,11 +96,11 @@ public class ProductServiceTest {
                 "first description",
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0),
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0)
-        );
+        ).toDomain();
     }
 
-    private Product secondProductEntity() {
-        return Product.entityOf(
+    private Product secondProduct() {
+        return ProductEntity.of(
                 1L,
                 "second",
                 Category.BLONDE_ROAST,
@@ -107,10 +108,10 @@ public class ProductServiceTest {
                 "second description",
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0),
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0)
-        );
+        ).toDomain();
     }
 
-    private Product product() {
+    private Product newProduct() {
         return Product.of(new ProductCreateRequest("test", "BLONDE_ROAST", 10000, "test description"));
     }
 }

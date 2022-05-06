@@ -5,6 +5,7 @@ import com.example.gccoffeemanagement.controller.ProductController;
 import com.example.gccoffeemanagement.domain.Category;
 import com.example.gccoffeemanagement.domain.Product;
 import com.example.gccoffeemanagement.dto.ProductResponse;
+import com.example.gccoffeemanagement.entity.ProductEntity;
 import com.example.gccoffeemanagement.exception.DuplicateProductException;
 import com.example.gccoffeemanagement.exception.ErrorCode;
 import com.example.gccoffeemanagement.exception.NotExecuteException;
@@ -52,7 +53,7 @@ public class ProductControllerTest {
         //given
         String url = "/api/v1/products";
         String viewName = "product-list";
-        Product firstProduct = Product.entityOf(
+        Product firstProduct = ProductEntity.of(
                 1L,
                 "first",
                 Category.BLONDE_ROAST,
@@ -60,8 +61,8 @@ public class ProductControllerTest {
                 "first description",
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0),
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0)
-        );
-        Product secondProduct = Product.entityOf(
+        ).toDomain();
+        Product secondProduct = ProductEntity.of(
                 1L,
                 "second",
                 Category.BLONDE_ROAST,
@@ -69,7 +70,7 @@ public class ProductControllerTest {
                 "second description",
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0),
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0)
-        );
+        ).toDomain();
         List<ProductResponse> productResponses = ProductResponse.listOf(List.of(firstProduct, secondProduct));
         doReturn(productResponses).when(productService).findAllProducts();
 
