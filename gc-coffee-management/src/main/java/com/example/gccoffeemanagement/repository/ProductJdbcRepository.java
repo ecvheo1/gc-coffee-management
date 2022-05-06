@@ -2,6 +2,7 @@ package com.example.gccoffeemanagement.repository;
 
 import com.example.gccoffeemanagement.domain.Category;
 import com.example.gccoffeemanagement.domain.Product;
+import com.example.gccoffeemanagement.entity.ProductEntity;
 import com.example.gccoffeemanagement.exception.ErrorCode;
 import com.example.gccoffeemanagement.exception.NotExecuteException;
 import org.springframework.jdbc.core.RowMapper;
@@ -50,14 +51,15 @@ public class ProductJdbcRepository implements ProductRepository {
     }
 
     private static final RowMapper<Product> productRowMapper = (resultSet, i) -> {
-        long productId = resultSet.getLong("id");
-        String productName = resultSet.getString("name");
+        long id = resultSet.getLong("id");
+        String name = resultSet.getString("name");
         Category category = Category.valueOf(resultSet.getString("category"));
         int price = resultSet.getInt("price");
         String description = resultSet.getString("description");
         LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
         LocalDateTime updatedAt = resultSet.getTimestamp("updated_at").toLocalDateTime();
-        return Product.entityOf(productId, productName, category, price, description, createdAt, updatedAt);
+        ProductEntity productEntity = ProductEntity.of(id, name, category, price, description, createdAt, updatedAt);
+        return productEntity.toDomain();
     };
 
     private Map<String, Object> toParamMap(Product product) {
