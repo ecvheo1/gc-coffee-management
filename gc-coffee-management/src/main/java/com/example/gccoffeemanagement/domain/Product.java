@@ -1,6 +1,7 @@
 package com.example.gccoffeemanagement.domain;
 
 import com.example.gccoffeemanagement.dto.ProductCreateRequest;
+import com.example.gccoffeemanagement.entity.ProductEntity;
 
 import java.time.LocalDateTime;
 
@@ -59,7 +60,7 @@ public class Product {
         return new Product(request.getName(), Category.from(request.getCategory()), request.getPrice(), request.getDescription());
     }
 
-    public static Product entityOf(long id, String name, Category category, int price, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public static Product of(long id, String name, Category category, int price, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         return new Product(id, name, category, price, description, createdAt, updatedAt);
     }
 }

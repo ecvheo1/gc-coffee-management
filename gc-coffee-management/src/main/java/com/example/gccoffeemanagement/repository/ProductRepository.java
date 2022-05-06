@@ -2,6 +2,7 @@ package com.example.gccoffeemanagement.repository;
 
 import com.example.gccoffeemanagement.domain.Category;
 import com.example.gccoffeemanagement.domain.Product;
+import com.example.gccoffeemanagement.entity.ProductEntity;
 
 import java.util.List;
 import java.util.Optional;
