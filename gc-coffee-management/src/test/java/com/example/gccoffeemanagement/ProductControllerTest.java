@@ -51,7 +51,7 @@ public class ProductControllerTest {
     @Test
     void product_목록_뷰_조회_요청이_들어올_때_product_목록을_조회하고_product_목록_뷰_이름을_리턴한다() throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String viewName = "product-list";
         Product firstProduct = ProductEntity.of(
                 1L,
@@ -89,7 +89,7 @@ public class ProductControllerTest {
     @Test
     void product_등록_뷰_요청이_들어올_때_product_등록_뷰_이름을_반환한다() throws Exception {
         //given
-        String url = "/api/v1/product/new";
+        String url = "/product/new";
         String viewName = "new-product";
 
         //when
@@ -105,7 +105,7 @@ public class ProductControllerTest {
     @NullAndEmptySource
     void product_등록_요청이_들어올_때_name이_blank라면_BAD_REQUEST를_반환한다(String name) throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.INVALID_INPUT_VALUE.getMessage();
 
         //when
@@ -126,7 +126,7 @@ public class ProductControllerTest {
     @NullAndEmptySource
     void product_등록_요청이_들어올_때_category가_blank라면_BAD_REQUEST를_반환한다(String category) throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.INVALID_INPUT_VALUE.getMessage();
 
         //when
@@ -146,7 +146,7 @@ public class ProductControllerTest {
     @Test
     void product_등록_요청이_들어올_때_price가_음수라면_BAD_REQUEST를_반환한다() throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.INVALID_INPUT_VALUE.getMessage();
 
         //when
@@ -167,7 +167,7 @@ public class ProductControllerTest {
     @NullAndEmptySource
     void product_등록_요청이_들어올_때_description이_blank라면_BAD_REQUEST를_반환한다(String description) throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.INVALID_INPUT_VALUE.getMessage();
 
         //when
@@ -187,7 +187,7 @@ public class ProductControllerTest {
     @Test
     void product_등록_요청이_들어올_때_category가_유효하지_않다면_BAD_REQUEST를_반환한다() throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.CATEGORY_NOT_FOUND.getMessage();
         String invalidCategory = "blahblah";
 
@@ -208,7 +208,7 @@ public class ProductControllerTest {
     @Test
     void product_등록_요청이_들어올_때_IllegalStateException이_넘어온다면_INTERNAL_SERVER_ERROR를_반환한다() throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.INTERNAL_SERVER_ERROR.getMessage();
         doThrow(new IllegalStateException()).when(productService).saveProduct(any(Product.class));
 
@@ -229,7 +229,7 @@ public class ProductControllerTest {
     @Test
     void product_등록_요청이_들어올_때_DuplicateProductException이_넘어온다면_BAD_REQUEST를_반환한다() throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.PRODUCT_DUPLICATED.getMessage();
         doThrow(new DuplicateProductException()).when(productService).saveProduct(any(Product.class));
 
@@ -250,7 +250,7 @@ public class ProductControllerTest {
     @Test
     void product_등록_요청이_들어올_때_NotExcuteException이_넘어온다면_INTERNAL_SERVER_ERROR를_반환한다() throws Exception {
         //given
-        String url = "/api/v1/products";
+        String url = "/products";
         String message = ErrorCode.INTERNAL_SERVER_ERROR.getMessage();
         doThrow(new NotExecuteException()).when(productService).saveProduct(any(Product.class));
 
@@ -271,8 +271,8 @@ public class ProductControllerTest {
     @Test
     void product_등록_요청이_들어올_때_정상적인_요청_데이터라면_product를_저장하고_리다이렉트한다() throws Exception {
         //given
-        String url = "/api/v1/products";
-        String redirectedUrl = "/api/v1/products";
+        String url = "/products";
+        String redirectedUrl = "/products";
         doNothing().when(productService).saveProduct(any(Product.class));
 
         //when
