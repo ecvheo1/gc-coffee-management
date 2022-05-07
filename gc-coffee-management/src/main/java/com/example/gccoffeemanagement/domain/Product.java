@@ -1,18 +1,17 @@
 package com.example.gccoffeemanagement.domain;
 
 import com.example.gccoffeemanagement.dto.ProductCreateRequest;
-import com.example.gccoffeemanagement.entity.ProductEntity;
 
 import java.time.LocalDateTime;
 
 public class Product {
-    private final long id;
-    private final String name;
-    private final Category category;
-    private final int price;
-    private final String description;
-    private final LocalDateTime createdAt;
-    private final LocalDateTime updatedAt;
+    private long id;
+    private String name;
+    private Category category;
+    private int price;
+    private String description;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     private Product(String name, Category category, int price, String description) {
         this(0, name, category, price, description, null, null);

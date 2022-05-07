@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class ProductJdbcRepository implements ProductRepository {
@@ -26,15 +27,21 @@ public class ProductJdbcRepository implements ProductRepository {
 
     @Override
     public List<Product> findAll() {
-        return jdbcTemplate.query(FIND_ALL_SQL, productRowMapper);
+        return jdbcTemplate.query(FIND_ALL_SQL, productEntityRowMapper)
+                .stream()
+                .map(ProductEntity::toDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Optional<Product> findByNameCategoryPrice(String name, Category category, int price) {
         List<Product> foundProducts = jdbcTemplate.query(
-                FIND_BY_NAME_CATEGORY_PRICE_SQL,
-                Map.of("name", name, "category", category.toString(), "price", price),
-                productRowMapper);
+                        FIND_BY_NAME_CATEGORY_PRICE_SQL,
+                        Map.of("name", name, "category", category.toString(), "price", price),
+                        productEntityRowMapper)
+                .stream()
+                .map(ProductEntity::toDomain)
+                .collect(Collectors.toList());
         return foundProducts.isEmpty() ? Optional.empty() : Optional.of(foundProducts.get(0));
     }
 
@@ -44,13 +51,13 @@ public class ProductJdbcRepository implements ProductRepository {
             throw new IllegalStateException(ErrorCode.NULL_INPUT_OBJECT.getMessage());
         }
 
-        int insertNum = jdbcTemplate.update(SAVE_SQL, toParamMap(product));
+        int insertNum = jdbcTemplate.update(SAVE_SQL, toParamMap(ProductEntity.from(product)));
         if (insertNum != 1) {
             throw new NotExecuteException();
         }
     }
 
-    private static final RowMapper<Product> productRowMapper = (resultSet, i) -> {
+    private static final RowMapper<ProductEntity> productEntityRowMapper = (resultSet, i) -> {
         long id = resultSet.getLong("id");
         String name = resultSet.getString("name");
         Category category = Category.valueOf(resultSet.getString("category"));
@@ -58,16 +65,15 @@ public class ProductJdbcRepository implements ProductRepository {
         String description = resultSet.getString("description");
         LocalDateTime createdAt = resultSet.getTimestamp("created_at").toLocalDateTime();
         LocalDateTime updatedAt = resultSet.getTimestamp("updated_at").toLocalDateTime();
-        ProductEntity productEntity = ProductEntity.of(id, name, category, price, description, createdAt, updatedAt);
-        return productEntity.toDomain();
+        return ProductEntity.of(id, name, category, price, description, createdAt, updatedAt);
     };
 
-    private Map<String, Object> toParamMap(Product product) {
+    private Map<String, Object> toParamMap(ProductEntity productEntity) {
         HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", product.getName());
-        paramMap.put("category", product.getCategory().toString());
-        paramMap.put("price", product.getPrice());
-        paramMap.put("description", product.getDescription());
+        paramMap.put("name", productEntity.getName());
+        paramMap.put("category", productEntity.getCategory().toString());
+        paramMap.put("price", productEntity.getPrice());
+        paramMap.put("description", productEntity.getDescription());
         return paramMap;
     }
 }

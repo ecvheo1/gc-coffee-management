@@ -48,4 +48,8 @@ public class ProductEntity extends BaseTimeEntity {
     public Product toDomain() {
         return Product.of(id, name, category, price, description, super.getCreatedAt(), super.getUpdatedAt());
     }
+
+    public static ProductEntity from(Product product) {
+        return new ProductEntity(null, null, 0, product.getName(), product.getCategory(), product.getPrice(), product.getDescription());
+    }
 }
