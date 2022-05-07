@@ -7,16 +7,16 @@ import axios from "axios";
 
 function App() {
     const [products, setProducts] = useState([
-        {productId: 'uuid-1', productName: '콜롬비아 커피 1', category: 'COFFEE_BEAN_PACKAGE', price: 5000},
-        {productId: 'uuid-2', productName: '콜롬비아 커피 2', category: 'COFFEE_BEAN_PACKAGE', price: 5000},
-        {productId: 'uuid-3', productName: '콜롬비아 커피 3', category: 'COFFEE_BEAN_PACKAGE', price: 5000},
+        {id: 'uuid-1', name: '콜롬비아 커피 1', category: 'COFFEE_BEAN_PACKAGE', price: 5000},
+        {id: 'uuid-2', name: '콜롬비아 커피 2', category: 'COFFEE_BEAN_PACKAGE', price: 5000},
+        {id: 'uuid-3', name: '콜롬비아 커피 3', category: 'COFFEE_BEAN_PACKAGE', price: 5000},
     ]);
     const [items, setItems] = useState([]);
-    const handleAddClicked = productId => {
-        const product = products.find(v => v.productId === productId);
-        const found = items.find(v => v.productId === productId);
+    const handleAddClicked = id => {
+        const product = products.find(v => v.id === id);
+        const found = items.find(v => v.id === id);
         const updatedItems =
-            found ? items.map(v => (v.productId === productId) ? {...v, count: v.count + 1} : v) : [...items, {
+            found ? items.map(v => (v.id === id) ? {...v, count: v.count + 1} : v) : [...items, {
                 ...product,
                 count: 1
             }]
@@ -36,10 +36,8 @@ function App() {
                 email: order.email,
                 address: order.address,
                 postcode: order.postcode,
-                orderItems: items.map(v => ({
-                    productId: v.productId,
-                    category: v.category,
-                    price: v.price,
+                orderProductRequests: items.map(v => ({
+                    productId: v.id,
                     quantity: v.count
                 }))
             }).then(
