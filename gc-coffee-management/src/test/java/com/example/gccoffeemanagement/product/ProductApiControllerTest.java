@@ -1,12 +1,12 @@
 package com.example.gccoffeemanagement.product;
 
-import com.example.gccoffeemanagement.controller.GlobalExceptionHandler;
-import com.example.gccoffeemanagement.controller.api.ProductApiController;
-import com.example.gccoffeemanagement.domain.Category;
-import com.example.gccoffeemanagement.domain.Product;
-import com.example.gccoffeemanagement.dto.ProductResponse;
-import com.example.gccoffeemanagement.entity.ProductEntity;
-import com.example.gccoffeemanagement.service.ProductService;
+import com.example.gccoffeemanagement.common.advice.GlobalExceptionHandler;
+import com.example.gccoffeemanagement.product.controller.api.ProductApiController;
+import com.example.gccoffeemanagement.product.domain.Category;
+import com.example.gccoffeemanagement.product.domain.Product;
+import com.example.gccoffeemanagement.product.dto.ProductResponse;
+import com.example.gccoffeemanagement.product.entity.ProductEntity;
+import com.example.gccoffeemanagement.product.service.ProductService;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

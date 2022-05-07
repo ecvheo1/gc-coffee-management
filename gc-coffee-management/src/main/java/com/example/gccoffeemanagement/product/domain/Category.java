@@ -1,0 +1,25 @@
+package com.example.gccoffeemanagement.product.domain;
+
+import com.example.gccoffeemanagement.common.exception.ErrorCode;
+import com.example.gccoffeemanagement.common.exception.InvalidValueException;
+
+import java.util.Arrays;
+
+public enum Category {
+    BLONDE_ROAST("BLONDE_ROAST"),
+    MEDIUM_ROAST("MEDIUM_ROAST"),
+    DARK_ROAST("DARK_ROAST");
+
+    private final String category;
+
+    Category(String category) {
+        this.category = category;
+    }
+
+    public static Category from(String category) {
+        return Arrays.stream(Category.values())
+                .filter(type -> type.category.equals(category))
+                .findFirst()
+                .orElseThrow(() -> new InvalidValueException(ErrorCode.CATEGORY_NOT_FOUND));
+    }
+}

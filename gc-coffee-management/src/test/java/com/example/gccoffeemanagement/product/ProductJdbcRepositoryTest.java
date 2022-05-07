@@ -1,9 +1,9 @@
 package com.example.gccoffeemanagement.product;
 
-import com.example.gccoffeemanagement.domain.Category;
-import com.example.gccoffeemanagement.domain.Product;
-import com.example.gccoffeemanagement.dto.ProductCreateRequest;
-import com.example.gccoffeemanagement.repository.ProductJdbcRepository;
+import com.example.gccoffeemanagement.product.domain.Category;
+import com.example.gccoffeemanagement.product.domain.Product;
+import com.example.gccoffeemanagement.product.dto.ProductCreateRequest;
+import com.example.gccoffeemanagement.product.repository.ProductJdbcRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

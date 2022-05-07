@@ -1,15 +1,15 @@
 package com.example.gccoffeemanagement.product;
 
-import com.example.gccoffeemanagement.controller.GlobalExceptionHandler;
-import com.example.gccoffeemanagement.controller.ProductController;
-import com.example.gccoffeemanagement.domain.Category;
-import com.example.gccoffeemanagement.domain.Product;
-import com.example.gccoffeemanagement.dto.ProductResponse;
-import com.example.gccoffeemanagement.entity.ProductEntity;
-import com.example.gccoffeemanagement.exception.DuplicateProductException;
-import com.example.gccoffeemanagement.exception.ErrorCode;
-import com.example.gccoffeemanagement.exception.NotExecuteException;
-import com.example.gccoffeemanagement.service.ProductService;
+import com.example.gccoffeemanagement.common.advice.GlobalExceptionHandler;
+import com.example.gccoffeemanagement.product.controller.ProductController;
+import com.example.gccoffeemanagement.product.domain.Category;
+import com.example.gccoffeemanagement.product.domain.Product;
+import com.example.gccoffeemanagement.product.dto.ProductResponse;
+import com.example.gccoffeemanagement.product.entity.ProductEntity;
+import com.example.gccoffeemanagement.order.exception.DuplicateProductException;
+import com.example.gccoffeemanagement.common.exception.ErrorCode;
+import com.example.gccoffeemanagement.common.exception.NotExecuteException;
+import com.example.gccoffeemanagement.product.service.ProductService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,11 +1,11 @@
 package com.example.gccoffeemanagement.order;
 
-import com.example.gccoffeemanagement.domain.Order;
-import com.example.gccoffeemanagement.dto.OrderCreateRequest;
-import com.example.gccoffeemanagement.dto.OrderProductCreateRequest;
-import com.example.gccoffeemanagement.repository.OrderRepository;
-import com.example.gccoffeemanagement.service.OrderService;
-import com.example.gccoffeemanagement.service.OrderServiceImpl;
+import com.example.gccoffeemanagement.order.domain.Order;
+import com.example.gccoffeemanagement.order.dto.OrderCreateRequest;
+import com.example.gccoffeemanagement.order.dto.OrderProductCreateRequest;
+import com.example.gccoffeemanagement.order.repository.OrderRepository;
+import com.example.gccoffeemanagement.order.service.OrderService;
+import com.example.gccoffeemanagement.order.service.OrderServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

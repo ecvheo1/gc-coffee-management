@@ -1,13 +1,13 @@
 package com.example.gccoffeemanagement.order;
 
-import com.example.gccoffeemanagement.controller.GlobalExceptionHandler;
-import com.example.gccoffeemanagement.controller.api.OrderApiController;
-import com.example.gccoffeemanagement.domain.Order;
-import com.example.gccoffeemanagement.dto.OrderCreateRequest;
-import com.example.gccoffeemanagement.dto.OrderProductCreateRequest;
-import com.example.gccoffeemanagement.exception.ErrorCode;
-import com.example.gccoffeemanagement.exception.NotExecuteException;
-import com.example.gccoffeemanagement.service.OrderService;
+import com.example.gccoffeemanagement.common.advice.GlobalExceptionHandler;
+import com.example.gccoffeemanagement.order.controller.api.OrderApiController;
+import com.example.gccoffeemanagement.order.domain.Order;
+import com.example.gccoffeemanagement.order.dto.OrderCreateRequest;
+import com.example.gccoffeemanagement.order.dto.OrderProductCreateRequest;
+import com.example.gccoffeemanagement.common.exception.ErrorCode;
+import com.example.gccoffeemanagement.common.exception.NotExecuteException;
+import com.example.gccoffeemanagement.order.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;

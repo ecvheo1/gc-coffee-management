@@ -1,14 +1,14 @@
 package com.example.gccoffeemanagement.product;
 
-import com.example.gccoffeemanagement.domain.Category;
-import com.example.gccoffeemanagement.domain.Product;
-import com.example.gccoffeemanagement.dto.ProductCreateRequest;
-import com.example.gccoffeemanagement.dto.ProductResponse;
-import com.example.gccoffeemanagement.entity.ProductEntity;
-import com.example.gccoffeemanagement.exception.DuplicateProductException;
-import com.example.gccoffeemanagement.repository.ProductRepository;
-import com.example.gccoffeemanagement.service.ProductService;
-import com.example.gccoffeemanagement.service.ProductServiceImpl;
+import com.example.gccoffeemanagement.product.domain.Category;
+import com.example.gccoffeemanagement.product.domain.Product;
+import com.example.gccoffeemanagement.product.dto.ProductCreateRequest;
+import com.example.gccoffeemanagement.product.dto.ProductResponse;
+import com.example.gccoffeemanagement.product.entity.ProductEntity;
+import com.example.gccoffeemanagement.order.exception.DuplicateProductException;
+import com.example.gccoffeemanagement.product.repository.ProductRepository;
+import com.example.gccoffeemanagement.product.service.ProductService;
+import com.example.gccoffeemanagement.product.service.ProductServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

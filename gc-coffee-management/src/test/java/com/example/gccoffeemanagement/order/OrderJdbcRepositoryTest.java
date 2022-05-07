@@ -1,8 +1,8 @@
 package com.example.gccoffeemanagement.order;
 
-import com.example.gccoffeemanagement.dto.OrderCreateRequest;
-import com.example.gccoffeemanagement.dto.OrderProductCreateRequest;
-import com.example.gccoffeemanagement.repository.OrderJdbcRepository;
+import com.example.gccoffeemanagement.order.dto.OrderCreateRequest;
+import com.example.gccoffeemanagement.order.dto.OrderProductCreateRequest;
+import com.example.gccoffeemanagement.order.repository.OrderJdbcRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -40,7 +40,7 @@ public class OrderJdbcRepositoryTest {
     @Order(1)
     void order를_저장할_때_전달받은_order가_null이면_IllegalStateException이_발생한다() {
         //given
-        final com.example.gccoffeemanagement.domain.Order order = null;
+        final com.example.gccoffeemanagement.order.domain.Order order = null;
 
         //when, then
         assertThrows(IllegalStateException.class, () -> orderJdbcRepository.save(order));
@@ -50,14 +50,14 @@ public class OrderJdbcRepositoryTest {
     @Order(2)
     void order를_저장할_때_전달받은_order를_저장한다() {
         //given
-        final com.example.gccoffeemanagement.domain.Order order = newOrder();
+        final com.example.gccoffeemanagement.order.domain.Order order = newOrder();
 
         //when, then
         assertDoesNotThrow(() -> orderJdbcRepository.save(order));
     }
 
-    private com.example.gccoffeemanagement.domain.Order newOrder() {
-        return com.example.gccoffeemanagement.domain.Order.of(
+    private com.example.gccoffeemanagement.order.domain.Order newOrder() {
+        return com.example.gccoffeemanagement.order.domain.Order.of(
                 new OrderCreateRequest(
                         "test@test.com",
                         "test address",
