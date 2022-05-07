@@ -1,4 +1,4 @@
-package com.example.gccoffeemanagement;
+package com.example.gccoffeemanagement.product;
 
 import com.example.gccoffeemanagement.controller.GlobalExceptionHandler;
 import com.example.gccoffeemanagement.controller.api.ProductApiController;

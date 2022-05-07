@@ -1,4 +1,4 @@
-package com.example.gccoffeemanagement;
+package com.example.gccoffeemanagement.order;
 
 import com.example.gccoffeemanagement.dto.OrderCreateRequest;
 import com.example.gccoffeemanagement.dto.OrderProductCreateRequest;

@@ -1,4 +1,4 @@
-package com.example.gccoffeemanagement;
+package com.example.gccoffeemanagement.product;
 
 import com.example.gccoffeemanagement.domain.Category;
 import com.example.gccoffeemanagement.domain.Product;
