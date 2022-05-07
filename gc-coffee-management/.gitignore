@@ -39,3 +39,4 @@ out/
 src/main/resources/application.yaml
 src/main/resources/schema.sql
 src/test/resources/application.yaml
+src/test/resources/product-insert.sql
