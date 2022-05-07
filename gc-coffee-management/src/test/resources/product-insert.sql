@@ -1,0 +1,1 @@
+INSERT INTO product(name, category, price, description) VALUES('베란다 블렌드', 'BLONDE_ROAST', 10000, '부드럽고 친근한 성향을 가진 은은한 블렌드입니다.');
