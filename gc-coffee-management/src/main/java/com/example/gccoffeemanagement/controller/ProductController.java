@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1")
 public class ProductController {
 
     private final ProductService productService;
@@ -35,6 +34,6 @@ public class ProductController {
     @PostMapping("/products")
     public String createProduct(@ModelAttribute @Valid ProductCreateRequest request) {
         productService.saveProduct(request.toDomain());
-        return "redirect:/api/v1/products";
+        return "redirect:/products";
     }
 }
