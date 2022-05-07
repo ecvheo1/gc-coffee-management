@@ -5,6 +5,7 @@ import com.example.gccoffeemanagement.exception.BusinessException;
 import com.example.gccoffeemanagement.exception.ErrorCode;
 import com.example.gccoffeemanagement.exception.InvalidValueException;
 import com.example.gccoffeemanagement.exception.NotExecuteException;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -23,10 +24,29 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidFormatException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidFormatException() {
+        final ErrorResponse response = ErrorResponse.of(ErrorCode.INVALID_INPUT_VALUE);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         final ErrorResponse response = ErrorResponse.of(ErrorCode.INVALID_INPUT_VALUE, e.getBindingResult());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    protected ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e) {
+        final ErrorResponse response = ErrorResponse.of(e);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidValueException.class)
+    protected ResponseEntity<ErrorResponse> handleInvalidValueException(InvalidValueException e) {
+        ErrorCode errorCode = e.getErrorCode();
+        final ErrorResponse response = ErrorResponse.of(errorCode);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(e.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(BusinessException.class)
