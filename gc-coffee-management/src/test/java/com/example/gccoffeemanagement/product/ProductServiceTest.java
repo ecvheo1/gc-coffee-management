@@ -39,20 +39,19 @@ public class ProductServiceTest {
     }
 
     @Test
-    void product_목록_조회_요청이_들어올_때_product_목록을_조회하고_product_DTO_리스트를_반환한다() {
+    void product_목록_조회_요청이_들어올_때_product_목록을_조회하고_product_리스트를_반환한다() {
         //given
         final Product firstProduct = firstProduct();
         final Product secondProduct = secondProduct();
         List<Product> products = List.of(firstProduct, secondProduct);
-        List<ProductResponse> productResponses = ProductResponse.listOf(products);
         doReturn(products).when(productRepository).findAll();
 
         //when
-        List<ProductResponse> foundProductResponses = productService.findAllProducts();
+        List<Product> foundProducts = productService.findAllProducts();
 
         //then
         verify(productRepository, times(1)).findAll();
-        assertThat(foundProductResponses).usingRecursiveComparison().isEqualTo(productResponses);
+        assertThat(foundProducts).usingRecursiveComparison().isEqualTo(products);
     }
 
     @Test

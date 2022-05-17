@@ -71,8 +71,9 @@ public class ProductControllerTest {
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0),
                 LocalDateTime.of(2022, 1, 1, 0, 0, 0)
         ).toDomain();
-        List<ProductResponse> productResponses = ProductResponse.listOf(List.of(firstProduct, secondProduct));
-        doReturn(productResponses).when(productService).findAllProducts();
+        List<Product> products = List.of(firstProduct, secondProduct);
+        List<ProductResponse> productResponses = ProductResponse.listOf(products);
+        doReturn(products).when(productService).findAllProducts();
 
         //when
         ResultActions resultActions = mockMvc.perform(
@@ -81,9 +82,7 @@ public class ProductControllerTest {
 
         //then
         verify(productService, times(1)).findAllProducts();
-        resultActions.andExpect(model().attribute("products", productResponses));
         resultActions.andExpect(view().name(viewName));
-
     }
 
     @Test

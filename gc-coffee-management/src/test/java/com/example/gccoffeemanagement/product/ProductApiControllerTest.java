@@ -51,8 +51,9 @@ public class ProductApiControllerTest {
     void product_목록_조회_요청이_들어올_때_product_목록을_리턴한다() throws Exception {
         //given
         String url = "/api/v1/products";
-        List<ProductResponse> productResponses = ProductResponse.listOf(List.of(firstProduct(), secondProduct()));
-        doReturn(productResponses).when(productService).findAllProducts();
+        List<Product> products = List.of(firstProduct(), secondProduct());
+        List<ProductResponse> productResponses = ProductResponse.listOf(products);
+        doReturn(products).when(productService).findAllProducts();
 
         //when
         ResultActions resultActions = mockMvc.perform(
