@@ -20,8 +20,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponse> findAllProducts() {
-        return Collections.unmodifiableList(ProductResponse.listOf(productRepository.findAll()));
+    public List<Product> findAllProducts() {
+        return productRepository.findAll();
     }
 
     @Override

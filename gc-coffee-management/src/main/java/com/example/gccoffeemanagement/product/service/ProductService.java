@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<ProductResponse> findAllProducts();
+    List<Product> findAllProducts();
 
     void saveProduct(Product product);
 }

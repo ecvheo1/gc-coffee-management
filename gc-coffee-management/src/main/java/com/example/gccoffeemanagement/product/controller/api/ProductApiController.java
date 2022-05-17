@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -23,6 +24,6 @@ public class ProductApiController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductResponse> getProductList() {
-        return productService.findAllProducts();
+        return Collections.unmodifiableList(ProductResponse.listOf(productService.findAllProducts()));
     }
 }
